@@ -4,7 +4,7 @@ import Link from "next/link";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Faye? Kelmith ",
+  title: "Kelmith ",
   description: "Personal website of Faye? Kelmith",
 };
 
@@ -25,9 +25,7 @@ export default function RootLayout({
             Essays
           </Link>
         </nav>
-        <main className="flex min-h-screen flex-col items-center justify-between p-24">
-          {children}
-        </main>
+        <main className="">{children}</main>
       </body>
     </html>
   );
