@@ -1,11 +1,23 @@
 import Image from "next/image";
-import { monofett } from "@/public/utils/fonts";
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className={monofett.className}>
-        <h1 className="text-8xl text-[#008080]">Faye? </h1>
+    <div className="container border border-pink-500 min-h-[75vh]">
+      <div className="flex flex-row justify-between">
+        <div>
+          <h1>Hello!</h1>
+          <h2>I am Kelmith</h2>
+          <h3>I write Code and Essays.</h3>
+        </div>
+        <div>
+          <Image
+            src="/images/kelmith.png"
+            alt="Picture of the Kelmith"
+            width={500}
+            height={500}
+            className="border border-pink-500"
+          />
+        </div>
       </div>
-    </main>
+    </div>
   );
 }
