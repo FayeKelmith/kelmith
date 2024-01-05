@@ -6,7 +6,7 @@ export default function Home() {
       <div className="w-full md:min-h-[75vh] flex md:flex-row flex-col-reverse justify-around items-center">
         <div className="text-3xl space-y-2">
           <h2 className="">
-            I am <span className="font-bold">Kelmith</span>
+            I am <span className="font-bold"> Faye Kelmith</span>
           </h2>
           <h2 className="">
             I <span className="font-bold">write Code and Essays.</span>
