@@ -20,7 +20,7 @@ export default function RootLayout({
           <Link href="/" className={monofett.className}>
             <h1 className="text-4xl md:text-5xl text-[#008080]">Faye? </h1>
           </Link>
-          <Link href="/essays" className="text-xl">
+          <Link href="/essays" className="text-2xl">
             Essays
           </Link>
         </nav>
