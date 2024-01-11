@@ -2,19 +2,41 @@
 import Image from "next/image";
 import Link from "next/link";
 import supabase from "@/supabase";
-import Notification from "@/public/components/Notification";
 import { useState, useEffect } from "react";
+import Notification, {
+  NotificationProps,
+} from "@/public/components/Notification";
+
 export default function Home() {
-  const [notifications, setNotifications] = useState({});
+  const [notifications, setNotifications] = useState<NotificationProps[]>([
+    {
+      title: "Loading",
+      status: "active",
+      message: "Loading",
+    },
+  ]);
   const addNotifications = async () => {
     try {
-      const { data, error } = await supabase.from("notifications").select("*");
+      const { data, error } = await supabase
+        .from("notifications")
+        .select("title, status, message")
+        .order("created_at", { ascending: false });
 
       if (error) {
         console.log(error);
       } else {
         console.log(`Data: ${JSON.stringify(data)}`);
-        setNotifications(JSON.stringify(data));
+        const notifications: NotificationProps[] = data.map(
+          (notification: any) => ({
+            title: notification.title,
+            status:
+              notification.status === "active" || notification.status === "done"
+                ? notification.status
+                : "active", // default to 'active' if status is not 'active' or 'done'
+            message: notification.message,
+          })
+        );
+        setNotifications(notifications);
       }
     } catch (err) {
       console.log(err);
@@ -61,6 +83,14 @@ export default function Home() {
       </header>
       <section className="container">
         <h1>This is what I am upto</h1>
+        <div>
+          {notifications.map((notification: NotificationProps) => (
+            <Notification
+              key={notification.title}
+              notification={notification}
+            />
+          ))}
+        </div>
       </section>
     </div>
   );

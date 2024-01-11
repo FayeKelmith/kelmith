@@ -1,17 +1,19 @@
-interface NotificationProps {
+export interface NotificationProps {
   title: string;
-  date: string;
   status: "active" | "done";
   message: string;
 }
 
-const Notification = ({ title, date, status, message }: NotificationProps) => {
+const Notification = ({
+  notification,
+}: {
+  notification: NotificationProps;
+}) => {
   return (
     <div>
-      <h1 className="text-3xl">{title}</h1>
-      <p>Date: {date}</p>
-      <p>Status: {status}</p>
-      <p>Message: {message}</p>
+      <h1 className="text-3xl">{notification.title}</h1>
+      <p>Status: {notification.status}</p>
+      <p>Message: {notification.message}</p>
     </div>
   );
 };
