@@ -1,7 +1,29 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
+import supabase from "@/supabase";
 import Notification from "@/public/components/Notification";
+import { useState, useEffect } from "react";
 export default function Home() {
+  const [notifications, setNotifications] = useState({});
+  const addNotifications = async () => {
+    try {
+      const { data, error } = await supabase.from("notifications").select("*");
+
+      if (error) {
+        console.log(error);
+      } else {
+        console.log(`Data: ${JSON.stringify(data)}`);
+        setNotifications(JSON.stringify(data));
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    addNotifications();
+  }, []);
   return (
     <div className="">
       <header className="w-full md:min-h-[75vh] flex md:flex-row flex-col-reverse justify-around items-center">
@@ -39,7 +61,6 @@ export default function Home() {
       </header>
       <section className="container">
         <h1>This is what I am upto</h1>
-        <Notification />
       </section>
     </div>
   );
