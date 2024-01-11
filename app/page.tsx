@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import Notification from "@/public/components/Notification";
 export default function Home() {
   return (
     <div className="">
@@ -33,11 +34,12 @@ export default function Home() {
           alt="Picture of the Kelmith"
           width={640}
           height={768}
-          className="py-10 w-full md:w-fit"
+          className="py-10 w-full md:w-fit h-auto"
         />
       </header>
       <section className="container">
         <h1>This is what I am upto</h1>
+        <Notification />
       </section>
     </div>
   );

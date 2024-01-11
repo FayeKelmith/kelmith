@@ -1,11 +1,10 @@
 import supabase from "@/supabase";
-export const GET = async (req, { params }) => {
+import { NextRequest } from "next/server";
+
+export const GET = async (req: NextRequest) => {
   try {
     //write query to select title
-    const { error, data } = await supabase
-      .from("kelmithessay")
-      .select("*")
-      .eq("title", params.title);
+    const { error, data } = await supabase.from("kelmithessay").select("*");
 
     if (error) {
       return new Response("Not found", { status: 404 });
