@@ -20,7 +20,8 @@ export default function Home() {
       const { data, error } = await supabase
         .from("notifications")
         .select("title, status, message")
-        .order("created_at", { ascending: false });
+        .order("created_at", { ascending: false })
+        .limit(3);
 
       if (error) {
         console.log(error);
@@ -81,9 +82,11 @@ export default function Home() {
           className="py-10 w-full md:w-fit h-auto"
         />
       </header>
-      <section className="container">
-        <h1>This is what I am upto</h1>
-        <div>
+      <section className="container mx-auto">
+        <h1 className="text-[#ff4747] text-2xl">
+          Live Update<span className="animate-ping text-4xl">...</span>
+        </h1>
+        <div className="">
           {notifications.map((notification: NotificationProps) => (
             <Notification
               key={notification.title}
