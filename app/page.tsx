@@ -21,7 +21,7 @@ export default function Home() {
         .from("notifications")
         .select("title, status, message")
         .order("created_at", { ascending: false })
-        .limit(3);
+        .limit(10);
 
       if (error) {
         console.log(error);
@@ -83,10 +83,8 @@ export default function Home() {
         />
       </header>
       <section className="container mx-auto">
-        <h1 className="text-[#ff4747] text-2xl">
-          Live Update<span className="animate-ping text-4xl">...</span>
-        </h1>
-        <div className="">
+        <h1 className="text-[#ff4747] text-xl">Most recent Books I read:</h1>
+        <div className=" ">
           {notifications.map((notification: NotificationProps) => (
             <Notification
               key={notification.title}
@@ -98,3 +96,5 @@ export default function Home() {
     </div>
   );
 }
+
+//TODO: Add my current favorite song
