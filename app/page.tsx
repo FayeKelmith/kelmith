@@ -1,57 +1,15 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import supabase from "@/supabase";
-import { useState, useEffect } from "react";
-import Notification, {
-  NotificationProps,
-} from "@/public/components/Notification";
+// import supabase from "@/supabase";
+// import { useState, useEffect } from "react";
 
 export default function Home() {
-  const [notifications, setNotifications] = useState<NotificationProps[]>([
-    {
-      title: "Loading",
-      status: "active",
-      message: "Loading",
-    },
-  ]);
-  const addNotifications = async () => {
-    try {
-      const { data, error } = await supabase
-        .from("notifications")
-        .select("title, status, message")
-        .order("created_at", { ascending: false })
-        .limit(10);
-
-      if (error) {
-        console.log(error);
-      } else {
-        console.log(`Data: ${JSON.stringify(data)}`);
-        const notifications: NotificationProps[] = data.map(
-          (notification: any) => ({
-            title: notification.title,
-            status:
-              notification.status === "active" || notification.status === "done"
-                ? notification.status
-                : "active", // default to 'active' if status is not 'active' or 'done'
-            message: notification.message,
-          })
-        );
-        setNotifications(notifications);
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  useEffect(() => {
-    addNotifications();
-  }, []);
   return (
     <div className="">
-      <header className="w-full md:min-h-[75vh] flex md:flex-row flex-col-reverse justify-around items-center">
+      <header className="w-full md:max-h-[80vh] flex md:flex-row flex-col-reverse justify-around items-center">
         <div className="text-3xl space-y-2">
-          <h2 className="">
+          <h2 className="text-5xl">
             I am <span className="font-bold"> Faye Kelmith</span>
           </h2>
           <h2 className="">
@@ -62,7 +20,7 @@ export default function Home() {
                 Code
               </Link>{" "}
               and
-              <Link href="/essays" className="underline text-[#008080]">
+              <Link href="/essays" className="underline text-bleu">
                 {" "}
                 Essays
               </Link>
@@ -79,20 +37,9 @@ export default function Home() {
           alt="Picture of the Kelmith"
           width={640}
           height={768}
-          className="py-10 w-full md:w-fit h-auto"
+          className=" w-full md:w-fit h-auto dark:opacity-80"
         />
       </header>
-      <section className="container mx-auto">
-        <h1 className="text-[#ff4747] text-xl">Most recent Books I read:</h1>
-        <div className=" ">
-          {notifications.map((notification: NotificationProps) => (
-            <Notification
-              key={notification.title}
-              notification={notification}
-            />
-          ))}
-        </div>
-      </section>
     </div>
   );
 }
