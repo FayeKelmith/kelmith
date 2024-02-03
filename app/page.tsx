@@ -20,7 +20,7 @@ export default function Home() {
                 Code
               </Link>{" "}
               and
-              <Link href="/essays" className="underline text-[#008080]">
+              <Link href="/essays" className="underline text-bleu">
                 {" "}
                 Essays
               </Link>
@@ -37,7 +37,7 @@ export default function Home() {
           alt="Picture of the Kelmith"
           width={640}
           height={768}
-          className=" w-full md:w-fit h-auto opacity-70"
+          className=" w-full md:w-fit h-auto dark:opacity-80"
         />
       </header>
     </div>
