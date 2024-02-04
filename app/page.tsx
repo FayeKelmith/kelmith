@@ -1,13 +1,11 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-// import supabase from "@/supabase";
-// import { useState, useEffect } from "react";
-
+import FeaturedContentCard from "@/public/components/FeaturedContentCard";
 export default function Home() {
   return (
-    <div className="">
-      <header className="w-full md:max-h-[80vh] flex md:flex-row flex-col-reverse justify-around items-center">
+    <main className="">
+      <header className="w-full flex md:flex-row flex-col-reverse justify-around items-center mb-8">
         <div className="text-3xl space-y-2">
           <h2 className="text-5xl">
             I am <span className="font-bold"> Faye Kelmith</span>
@@ -16,7 +14,7 @@ export default function Home() {
             I{" "}
             <span className="font-semibold">
               write{" "}
-              <Link href="/work" className="underline text-[#ff4747]">
+              <Link href="/work" className="underline text-rouge">
                 Code
               </Link>{" "}
               and
@@ -35,12 +33,23 @@ export default function Home() {
         <Image
           src="/images/kelmith.png"
           alt="Picture of the Kelmith"
-          width={640}
-          height={768}
+          width={500}
+          height={500}
           className=" w-full md:w-fit h-auto dark:opacity-80"
         />
       </header>
-    </div>
+      <section className="mx-auto container">
+        <div className="text-3xl flex items-center ml-10 my-4">
+          {" "}
+          <div className="bg-rouge w-2 h-10 mx-2"> </div> My most recent essays
+        </div>
+        <div className="grid md:grid-cols-3 gap-x-8 mx-auto my-2">
+          <FeaturedContentCard />
+          <FeaturedContentCard />
+          <FeaturedContentCard />
+        </div>
+      </section>
+    </main>
   );
 }
 

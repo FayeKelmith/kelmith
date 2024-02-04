@@ -14,6 +14,7 @@ const config: Config = {
         grey: "#cfe2f3",
         noire: "#02020c",
         bleu: "#1891db",
+        rouge: "#ff4747",
       },
     },
   },
