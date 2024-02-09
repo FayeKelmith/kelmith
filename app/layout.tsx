@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { poppins } from "@/public/utils/fonts";
+import { inter } from "@/public/utils/fonts";
 import Link from "next/link";
 import "./globals.css";
 import Image from "next/image";
-import { Provider } from "@/public/utils/providers";
+import { ThemeProvider } from "@/public/utils/providers";
 import ThemeButton from "@/public/components/ThemeButton";
+import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Kelmith ",
@@ -17,9 +18,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={poppins.className}>
-        <Provider>
+    <html lang="en" suppressHydrationWarning>
+      <body className={inter.className}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          disableTransitionOnChange
+          enableSystem
+        >
           <nav className="flex flex-row justify-between md:px-10 px-4 py-2 items-center">
             <Link href="/" className="">
               <Image
@@ -49,7 +55,7 @@ export default function RootLayout({
             </div>
           </nav>
           <main className="">{children}</main>
-        </Provider>
+        </ThemeProvider>
       </body>
     </html>
   );
